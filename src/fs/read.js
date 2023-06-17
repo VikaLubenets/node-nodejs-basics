@@ -15,7 +15,7 @@ const read = async () => {
     } else {
       fs.readFile(pathFile, { withFileTypes: true }, (readErr, content) => {
         if (readErr) {
-          throw new Error(`Error reading directory: ${readErr}`);
+          throw new Error(`Error reading file: ${readErr}`);
         }
         console.log(content.toString());
       });
