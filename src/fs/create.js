@@ -15,7 +15,7 @@ const create = async () => {
           console.log('File created successfully');
         });
       } else {
-        console.log('FS operation failed: File already exists');
+        throw new Error('FS operation failed: File already exists');
       }
     });
 }

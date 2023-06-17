@@ -12,7 +12,7 @@ const copy = async () => {
     access(pathFolderCurr, constants.F_OK, (err) => {
         if (err){
             
-            console.log('FS operation failed: folder files does not exist');
+            throw new Error('FS operation failed: folder files does not exist');
 
         } else {
             access(pathFolderTarget, constants.F_OK, (err) => {
@@ -37,7 +37,7 @@ const copy = async () => {
                         });
                     });
                 } else {
-                  console.log('FS operation failed: folder files-copy already exists');
+                    throw new Error('FS operation failed: folder files-copy already exists');
                 }
               });
         }

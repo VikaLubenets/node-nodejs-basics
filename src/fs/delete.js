@@ -11,7 +11,7 @@ const remove = async () => {
 
     access(file, constants.F_OK, (err) => {
       if (err) {
-        console.log('FS operation failed: File does not exist');
+        throw new Error('FS operation failed: File does not exist');
       } else {
         unlink(file, (err) => {
             if (err) throw err;
