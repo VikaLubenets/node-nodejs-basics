@@ -9,13 +9,13 @@ const calculateHash = async () => {
     const file = path.join(__dirname, 'files', 'fileToCalculateHashFor.txt');
     const hash = createHash('sha256');
 
-    const input = createReadStream(file);
-    input.on('readable', () => {
-        const data = input.read();
+    const output = createReadStream(file);
+    output.on('readable', () => {
+        const data = output.read();
         if (data)
             hash.update(data);
         else {
-            console.log(`${hash.digest('hex')}`);
+            console.log(hash.digest('hex'));
         }
     });
 
