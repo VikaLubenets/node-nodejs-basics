@@ -21,5 +21,5 @@ const sendResult = (n) => {
 };
 
 
-const n = 7;
+const n = 7; //example, you can change n for tests
 sendResult(n);
