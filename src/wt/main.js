@@ -13,22 +13,21 @@ const performCalculations = async () => {
     const workers = [];
 
     for (let i = 0; i < quantatyCPU; i++) {
-        workers.push(
-            new Promise((resolve, reject) => {
-                const worker = new Worker(join(__dirname, 'worker.js'), { workerData: { n } });
-                n++;
+        const promise = new Promise((resolve, reject) => {
+            const worker = new Worker(join(__dirname, 'worker.js'), { workerData: { n } });
+            n++;
 
-                worker.on('message', (result) => {
-                    results[i] = { status: 'resolved', data: result };
-                    resolve();
-                });
+            worker.on('message', (result) => {
+                results[i] = { status: 'resolved', data: result };
+                resolve();
+            });
 
-                worker.on('error', (err) => {
-                    results[i] = { status: 'error', data: null };
-                    reject(err);
-                });
-            })
-        );
+            worker.on('error', (err) => {
+                results[i] = { status: 'error', data: null };
+                reject(err);
+            });
+        })
+        workers.push(promise);
     }
 
     await Promise.all(workers);
