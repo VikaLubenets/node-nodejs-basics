@@ -1,13 +1,12 @@
-import fs from 'fs';
-import { access, constants } from 'node:fs';
-import { unlink } from 'node:fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { access, constants, unlink } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 const remove = async () => {
-    const file = path.join(__dirname, 'files', 'fileToRemove.txt');
+    const file = join(__dirname, 'files', 'fileToRemove.txt');
 
     access(file, constants.F_OK, (err) => {
       if (err) {
