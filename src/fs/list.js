@@ -1,4 +1,4 @@
-import { access, constants } from 'node:fs';
+import { access, constants, readdir } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,7 +12,7 @@ const list = async () => {
         if (err) {
           throw new Error('FS operation failed: files folder does not exist');
         } else {
-          fs.readdir(pathFolder, { withFileTypes: true }, (readErr, files) => {
+          readdir(pathFolder, { withFileTypes: true }, (readErr, files) => {
             if (readErr) {
               throw new Error(`Error reading directory files: ${readErr}`);
             }

@@ -1,5 +1,7 @@
+import { argv } from 'node:process';
+
 const parseArgs = () => {
-    const strArr = process.argv;
+    const strArr = argv;
     const obj = {};
   
     for (let i = 0; i < strArr.length; i += 2) {
